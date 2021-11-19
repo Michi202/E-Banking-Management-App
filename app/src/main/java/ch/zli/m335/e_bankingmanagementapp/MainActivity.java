@@ -3,8 +3,10 @@ package ch.zli.m335.e_bankingmanagementapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.database.Cursor;
@@ -12,6 +14,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,10 +29,7 @@ public class MainActivity extends AppCompatActivity {
     CalculateService calculateService;
     boolean calculateBound = false;
     private DBHandler dbHandler;
-    private Button monthly;
-    private Button analysis;
-    private Button cards;
-    private Button payments;
+    private Button monthly, payments, cards, analysis, account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
 
         payments = (Button) findViewById(R.id.payments);
         payments.setOnClickListener(clickListener);
+
+        account = (Button) findViewById(R.id.accountBtn);
+        account.setOnClickListener(clickListener);
 
     }
 
@@ -71,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
                     Intent i4 = new Intent(MainActivity.this, AccountActivity.class);
                     startActivity(i4);
                     break;
+                case R.id.accountBtn:
+                    displayAccountDialog();
             }
         }
     };
@@ -80,6 +85,34 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         Intent intent = new Intent(this, CalculateService.class);
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
+    }
+
+    private void displayAccountDialog() {
+
+        accountDialog = new Dialog(getActivity());
+        accountDialog.setContentView(R.layout.account_dialog);
+
+        accountDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+        accountDialog.setCanceledOnTouchOutside(true);
+        accountDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                Toast.makeText(getActivity(), "Account Creation Cancelled", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        edtAccountName = accountDialog.findViewById(R.id.edt_payee_name);
+        edtInitAccountBalance = accountDialog.findViewById(R.id.edt_init_bal);
+
+        btnCancel = accountDialog.findViewById(R.id.btn_cancel_dialog);
+        btnAddAccount = accountDialog.findViewById(R.id.btn_add_payee);
+
+        btnCancel.setOnClickListener(addAccountClickListener);
+        btnAddAccount.setOnClickListener(addAccountClickListener);
+
+        accountDialog.show();
+
     }
 
     private ServiceConnection connection = new ServiceConnection() {

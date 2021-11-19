@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal|center_vertical"
     tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
         android:layout_height="220dp"
+        android:background="@drawable/modern"
         android:scaleType="centerCrop"
         android:src="@drawable/bgheader"
-        android:background="@drawable/modern"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,9 +22,9 @@
         android:id="@+id/titlepage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
         android:text="Bank Information"
         android:textAlignment="center"
         android:textColor="#FFF"
@@ -36,13 +37,13 @@
         android:id="@+id/subtitlepage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:lineSpacingExtra="6dp"
         android:text="Dummy Text"
         android:textAlignment="center"
         android:textColor="#7C8AF5"
-        android:lineSpacingExtra="6dp"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,8 +55,8 @@
         android:layout_height="match_parent"
         android:layout_marginTop="220dp"
         android:layout_marginBottom="100dp"
-        android:orientation="horizontal"
         android:background="@drawable/modern"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"></LinearLayout>
 
@@ -76,6 +77,19 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/logo" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="516dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/accountBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Account" />
         </LinearLayout>
 
         <LinearLayout
