@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AnalysisActivity extends AppCompatActivity {
 
-    AnalysisService analysisService;
+    ch.zli.m335.e_bankingmanagementapp.AnalysisService analysisService;
     boolean analysisBound = false;
 
     @Override
@@ -25,7 +25,7 @@ public class AnalysisActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Intent intent = new Intent(this, AnalysisService.class);
+        Intent intent = new Intent(this, ch.zli.m335.e_bankingmanagementapp.AnalysisService.class);
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
 
@@ -33,7 +33,7 @@ public class AnalysisActivity extends AppCompatActivity {
 
         @Override
         public void onServiceConnected(ComponentName className, IBinder service) {
-            AnalysisService.AnalysisBinder binder = (AnalysisService.AnalysisBinder) service;
+            ch.zli.m335.e_bankingmanagementapp.AnalysisService.AnalysisBinder binder = (ch.zli.m335.e_bankingmanagementapp.AnalysisService.AnalysisBinder) service;
             analysisService = binder.getService();
             analysisBound = true;
             if (analysisBound) {

@@ -25,7 +25,7 @@ public class CreditCardActivity extends AppCompatActivity {
     String getUserCompleteName;
     String userUserName = "";
     String getUserUserName;
-    CreditCardService creditCardService;
+    ch.zli.m335.e_bankingmanagementapp.CreditCardService creditCardService;
     boolean creditCardBound = false;
 
     @Override
@@ -67,7 +67,7 @@ public class CreditCardActivity extends AppCompatActivity {
                 editor2.putString(userUserName, userName.getText().toString());
                 editor2.apply();
 
-                Intent a = new Intent(CreditCardActivity.this, AccountActivity.class);
+                Intent a = new Intent(CreditCardActivity.this, ch.zli.m335.e_bankingmanagementapp.AccountActivity.class);
                 startActivity(a);
             }
         });
@@ -76,7 +76,7 @@ public class CreditCardActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Intent intent = new Intent(this, CreditCardService.class);
+        Intent intent = new Intent(this, ch.zli.m335.e_bankingmanagementapp.CreditCardService.class);
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
 
@@ -84,7 +84,7 @@ public class CreditCardActivity extends AppCompatActivity {
 
         @Override
         public void onServiceConnected(ComponentName className, IBinder service) {
-            CreditCardService.CreditCardBinder binder = (CreditCardService.CreditCardBinder) service;
+            ch.zli.m335.e_bankingmanagementapp.CreditCardService.CreditCardBinder binder = (ch.zli.m335.e_bankingmanagementapp.CreditCardService.CreditCardBinder) service;
             creditCardService = binder.getService();
             creditCardBound = true;
             if (creditCardBound) {

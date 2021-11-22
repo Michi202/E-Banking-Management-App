@@ -7,8 +7,6 @@ import android.os.IBinder;
 
 public class MonthlyPlanService extends Service {
 
-    // variables for our coursename,
-    // description, tracks and duration, id.
     private String monthlyName;
     private String monthlyDuration;
     private String monthlyTracks;
@@ -30,7 +28,6 @@ public class MonthlyPlanService extends Service {
         return binder;
     }
 
-    // creating getter and setter methods
     public String getMonthlyName() {
         return monthlyName;
     }
@@ -71,7 +68,6 @@ public class MonthlyPlanService extends Service {
         this.id = id;
     }
 
-    // constructor
     public MonthlyPlanService(String monthlyName, String monthlyDuration, String monthlyTracks, String monthlyDescription) {
         this.monthlyName = monthlyName;
         this.monthlyDuration = monthlyDuration;

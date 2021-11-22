@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import ch.zli.m335.e_bankingmanagementapp.AccountService;
+
 public class AccountActivity extends AppCompatActivity {
 
     TextView titlepage, subtitlepage, completeName, userName, bankone, expired;

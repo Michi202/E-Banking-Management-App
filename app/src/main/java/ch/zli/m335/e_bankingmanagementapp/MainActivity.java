@@ -10,17 +10,21 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    CalculateService calculateService;
+    ch.zli.m335.e_bankingmanagementapp.CalculateService calculateService;
     boolean calculateBound = false;
-    private DBHandler dbHandler;
+    private ch.zli.m335.e_bankingmanagementapp.DBHandler dbHandler;
+    private TextView balance;
     private Button monthly, payments, cards, analysis, transaction;
 
     @Override
@@ -45,21 +49,11 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent();
-                        PendingIntent pIntent = PendingIntent.getActivity(MainActivity.this, 0, intent, 0);
-                        Notification noti = new Notification.Builder(MainActivity.this)
-                            .setTicker("User Transaction")
-                            .setContentTitle("Transaction")
-                            .setContentText("Transactions unable, because of maintainance issues")
-                                .setSmallIcon(R.drawable.logo)
-                                .setContentIntent(pIntent).getNotification();
-
-                        noti.flags = Notification.FLAG_AUTO_CANCEL;
-                        NotificationManager nm = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-                        nm.notify(0, noti);
-
-                        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                            vibe.vibrate(100);
+                        DBHandler dbHandler = new DBHandler(MainActivity.this);
+                        Cursor cursor = dbHandler.readalldata();
+                        cursor.moveToFirst();
+                        TextView balance = (TextView) findViewById(R.id.balance);
+                        balance.setText(cursor.getString(2));
                     }
                 }
         );
@@ -72,19 +66,19 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.monthly:
-                    Intent i = new Intent(MainActivity.this, MonthlyPlanActivity.class);
+                    Intent i = new Intent(MainActivity.this, ch.zli.m335.e_bankingmanagementapp.MonthlyPlanActivity.class);
                     startActivity(i);
                     break;
                 case R.id.analysis:
-                    Intent i2 = new Intent(MainActivity.this, AnalysisActivity.class);
+                    Intent i2 = new Intent(MainActivity.this, ch.zli.m335.e_bankingmanagementapp.AnalysisActivity.class);
                     startActivity(i2);
                     break;
                 case R.id.cards:
-                    Intent i3 = new Intent(MainActivity.this, CreditCardActivity.class);
+                    Intent i3 = new Intent(MainActivity.this, ch.zli.m335.e_bankingmanagementapp.CreditCardActivity.class);
                     startActivity(i3);
                     break;
                 case R.id.payments:
-                    Intent i4 = new Intent(MainActivity.this, AccountActivity.class);
+                    Intent i4 = new Intent(MainActivity.this, ch.zli.m335.e_bankingmanagementapp.AccountActivity.class);
                     startActivity(i4);
                     break;
             }
@@ -96,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Intent intent = new Intent(this, CalculateService.class);
+        Intent intent = new Intent(this, ch.zli.m335.e_bankingmanagementapp.CalculateService.class);
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
 
@@ -104,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onServiceConnected(ComponentName className, IBinder service) {
-            CalculateService.CalculateBinder binder = (CalculateService.CalculateBinder) service;
+            ch.zli.m335.e_bankingmanagementapp.CalculateService.CalculateBinder binder = (ch.zli.m335.e_bankingmanagementapp.CalculateService.CalculateBinder) service;
             calculateService = binder.getService();
             calculateBound = true;
             if (calculateBound) {
