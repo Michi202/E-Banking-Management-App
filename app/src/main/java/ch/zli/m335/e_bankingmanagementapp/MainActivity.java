@@ -1,35 +1,27 @@
 package ch.zli.m335.e_bankingmanagementapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.core.app.NotificationCompat;
 
-import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.text.TextUtils;
+import android.os.Vibrator;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    ArrayList<String> money;
     CalculateService calculateService;
     boolean calculateBound = false;
     private DBHandler dbHandler;
-    private Button monthly, payments, cards, analysis, account;
+    private Button monthly, payments, cards, analysis, transaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +40,29 @@ public class MainActivity extends AppCompatActivity {
         payments = (Button) findViewById(R.id.payments);
         payments.setOnClickListener(clickListener);
 
-        account = (Button) findViewById(R.id.accountBtn);
-        account.setOnClickListener(clickListener);
+        transaction = (Button) findViewById(R.id.transaction);
+        transaction.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent();
+                        PendingIntent pIntent = PendingIntent.getActivity(MainActivity.this, 0, intent, 0);
+                        Notification noti = new Notification.Builder(MainActivity.this)
+                            .setTicker("User Transaction")
+                            .setContentTitle("Transaction")
+                            .setContentText("Transactions unable, because of maintainance issues")
+                                .setSmallIcon(R.drawable.logo)
+                                .setContentIntent(pIntent).getNotification();
+
+                        noti.flags = Notification.FLAG_AUTO_CANCEL;
+                        NotificationManager nm = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+                        nm.notify(0, noti);
+
+                        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                            vibe.vibrate(100);
+                    }
+                }
+        );
 
     }
 
@@ -74,45 +87,17 @@ public class MainActivity extends AppCompatActivity {
                     Intent i4 = new Intent(MainActivity.this, AccountActivity.class);
                     startActivity(i4);
                     break;
-                case R.id.accountBtn:
-                    displayAccountDialog();
             }
         }
     };
+
+
 
     @Override
     protected void onStart() {
         super.onStart();
         Intent intent = new Intent(this, CalculateService.class);
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
-    }
-
-    private void displayAccountDialog() {
-
-        accountDialog = new Dialog(getActivity());
-        accountDialog.setContentView(R.layout.account_dialog);
-
-        accountDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-
-        accountDialog.setCanceledOnTouchOutside(true);
-        accountDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialogInterface) {
-                Toast.makeText(getActivity(), "Account Creation Cancelled", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        edtAccountName = accountDialog.findViewById(R.id.edt_payee_name);
-        edtInitAccountBalance = accountDialog.findViewById(R.id.edt_init_bal);
-
-        btnCancel = accountDialog.findViewById(R.id.btn_cancel_dialog);
-        btnAddAccount = accountDialog.findViewById(R.id.btn_add_payee);
-
-        btnCancel.setOnClickListener(addAccountClickListener);
-        btnAddAccount.setOnClickListener(addAccountClickListener);
-
-        accountDialog.show();
-
     }
 
     private ServiceConnection connection = new ServiceConnection() {
