@@ -81,7 +81,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="458dp"
+            android:layout_height="348dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -90,6 +90,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Make a transaction" />
+
+            <TextView
+                android:id="@+id/balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Balance" />
         </LinearLayout>
 
         <LinearLayout
