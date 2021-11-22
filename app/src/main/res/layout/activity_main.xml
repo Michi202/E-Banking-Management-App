@@ -25,7 +25,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:text="Bank Information"
+        android:text="E-Banking"
         android:textAlignment="center"
         android:textColor="#FFF"
         android:textSize="24sp"
@@ -41,7 +41,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:lineSpacingExtra="6dp"
-        android:text="Dummy Text"
+        android:text="Home"
         android:textAlignment="center"
         android:textColor="#7C8AF5"
         android:textSize="18sp"
@@ -81,15 +81,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="516dp"
+            android:layout_height="458dp"
             android:gravity="center"
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/accountBtn"
+                android:id="@+id/transaction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Account" />
+                android:text="Make a transaction" />
         </LinearLayout>
 
         <LinearLayout
@@ -106,9 +106,11 @@
                 android:layout_margin="5dp"
                 android:width="2dp"
                 android:minHeight="78dp"
-                app:icon="@android:drawable/ic_menu_my_calendar"
-                app:iconGravity="textEnd"
-                tools:ignore="SpeakableTextPresentCheck" />
+                app:icon="@android:drawable/ic_menu_month"
+                app:iconGravity="top"
+                android:text="Monthly"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:textSize="10dp"/>
 
             <Button
                 android:id="@+id/analysis"
@@ -118,17 +120,22 @@
                 android:width="2dp"
                 android:minHeight="78dp"
                 app:icon="@android:drawable/ic_menu_share"
-                app:iconGravity="textEnd" />
+                app:iconGravity="top"
+                android:text="Analysis"
+                android:textSize="10dp"/>
 
-            <Button
+             <Button
                 android:id="@+id/cards"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:width="2dp"
                 android:minHeight="78dp"
-                app:icon="@android:drawable/ic_menu_upload_you_tube"
-                app:iconGravity="textEnd" />
+                android:text="Info"
+                app:icon="@android:drawable/ic_menu_info_details"
+                app:iconGravity="top"
+                android:textSize="10dp"/>
+
 
             <Button
                 android:id="@+id/payments"
@@ -138,7 +145,9 @@
                 android:width="2dp"
                 android:minHeight="78dp"
                 app:icon="@android:drawable/ic_menu_month"
-                app:iconGravity="textEnd" />
+                app:iconGravity="top"
+                android:text="Card"
+                android:textSize="10dp"/>
 
         </LinearLayout>
 

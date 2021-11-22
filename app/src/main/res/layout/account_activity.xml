@@ -12,6 +12,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="102dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/logo" />
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/titlepage"
         android:layout_width="wrap_content"
@@ -34,7 +47,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:text="Dummy Text"
+        android:text="Your Credit Card"
         android:textAlignment="center"
         android:textColor="#AFAFAF"
         android:lineSpacingExtra="6dp"
@@ -72,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="18dp"
-        android:text="Max Mustermann"
+        android:text="Max"
         android:textColor="#FFF"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -84,7 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="2dp"
-        android:text="maxmus"
+        android:text="Mustermann"
         android:textColor="#FFF"
         android:textSize="13sp"
         app:layout_constraintStart_toEndOf="@+id/imageView"

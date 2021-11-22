@@ -1,68 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <!--Edit text to enter course name-->
-    <EditText
-        android:id="@+id/idEdtCourseName"
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bgheader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titlepage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:text="E-Banking"
+        android:textAlignment="center"
+        android:textColor="#FFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/subtitlepage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:lineSpacingExtra="6dp"
+        android:text="Monthly Plan"
+        android:textAlignment="center"
+        android:textColor="#7C8AF5"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titlepage" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="102dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/logo" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Enter course Name" />
+        android:orientation="vertical"
+        android:paddingTop="220dp">
 
-    <!--edit text to enter course duration-->
-    <EditText
-        android:id="@+id/idEdtCourseDuration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Enter Course Duration" />
+        <EditText
+            android:id="@+id/idEdtCourseName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="Enter Monthly Plan Name" />
 
-    <!--edit text to display course tracks-->
-    <EditText
-        android:id="@+id/idEdtCourseTracks"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Enter Course Tracks" />
+        <EditText
+            android:id="@+id/idEdtCourseDuration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="Enter Monthly Plan Duration" />
 
-    <!--edit text for course description-->
-    <EditText
-        android:id="@+id/idEdtCourseDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Enter Course Description" />
+        <EditText
+            android:id="@+id/idEdtCourseTracks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="Enter Monthly Plan Information" />
 
-    <Button
-        android:id="@+id/buttonInsert"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Insert Image"
-        android:textAllCaps="false" />
+        <EditText
+            android:id="@+id/idEdtCourseDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="Enter Montly Plan Description" />
 
-    <!--button for adding new course-->
-    <Button
-        android:id="@+id/idBtnAddCourse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Add Course"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/idBtnAddCourse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Add Monthly Plan"
+            android:textAllCaps="false" />
 
-    <!--new button for opening our course list activity-->
-    <Button
-        android:id="@+id/idBtnReadCourse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Read All Courses"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/idBtnReadCourse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Show Monthly Plans"
+            android:textAllCaps="false" />
 
-</LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
